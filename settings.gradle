@@ -1,3 +1,4 @@
 rootProject.name = 'research-java8'
 include 'java-8-impatient'
 include 'this-is-java-8'
+include 'java-8-others'
