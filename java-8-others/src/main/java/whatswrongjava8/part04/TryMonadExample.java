@@ -19,18 +19,26 @@ public class TryMonadExample {
 		Person james = new Person(new Address(null));
 		persons.put("james", james);
 
+		// without exception
 		persons.find("Jack")
 			.map(person -> person.getAddress())
 			.map(address -> address.getCity())
 			.onFailure(throwable -> {
-				throw new IllegalStateException(throwable);
+				System.out.println("Error occured : " + throwable.getMessage());;
 			})
 			.onSuccess(city -> System.out.println("Jack's city is " + city.getCityName()));
 
-
-		persons.find("james")
-			.map(person -> person.getAddress())
-			.map(address -> address.getCity());
+			persons.find("james")
+				.map(person -> person.getAddress())
+				.map(address -> {
+					final City city = address.getCity();
+					if (city == null) {
+						throw new IllegalStateException("city must not be null."); // 예외는 여기서 발생했지만, 실제 처리는 onFailure()에서 한다.
+					}
+					return city;
+				})
+				.map(city -> city.getCityName())
+				.onFailure(throwable -> System.out.println("Error occured : " + throwable.getMessage()));
 
 
 	}

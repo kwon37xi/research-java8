@@ -8,6 +8,8 @@ import java.util.function.Predicate;
 
 /**
  * This Try monad is copied from <a href="https://github.com/jasongoodwin/better-java-monads/blob/master/src/main/java/com/jasongoodwin/monads/Try.java">better-java-monads Try</a>
+ *
+ * <p>Try monad는 null 값 체크같은 것을 하는게 아니라, 코드 실행 와중에 예외 발생을 감지하고 있다가 onFailure, onSuccess로 그 결과를 줄 수 있는 역할을 한다.</p>
  * Monadic Try type.
  * Represents a result type that could have succeeded with type T or failed with a Throwable.
  * Originally was Exception but due to seeing issues with eg play with checked Throwable,
