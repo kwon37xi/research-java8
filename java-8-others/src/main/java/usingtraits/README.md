@@ -1,0 +1,1 @@
+* [Using Traits in Java 8](https://dzone.com/articles/using-traits-in-java-8)
