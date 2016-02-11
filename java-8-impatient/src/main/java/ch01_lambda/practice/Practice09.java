@@ -1,5 +1,6 @@
 package ch01_lambda.practice;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
@@ -13,5 +14,17 @@ public class Practice09 {
                 }
             });
         }
+    }
+
+    static class ArrayList2<T> extends ArrayList<T> implements Collection2<T> {
+
+    }
+
+    public static void main(String[] args) {
+        ArrayList2<String> strings = new ArrayList2<>();
+        strings.add("hello");
+        strings.add("world");
+
+        strings.forEachIf((str) -> System.out.println(str), (str) -> str.contains("d"));
     }
 }
