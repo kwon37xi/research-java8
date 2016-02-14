@@ -16,7 +16,7 @@ public class Lecture02 {
     public static void main(String[] args) throws IOException {
         final Path alicePath = Paths.get("java-8-impatient/alice.txt");
         String contents = new String(Files.readAllBytes(alicePath), StandardCharsets.UTF_8);
-        Stream<String> words = Stream.of(contents);
+        Stream<String> words = Stream.of(contents.split("[\\P{L}]+"));
 
 //        words.forEach(w -> System.out.println(w));
 
