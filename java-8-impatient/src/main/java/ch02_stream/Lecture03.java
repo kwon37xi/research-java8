@@ -28,7 +28,9 @@ public class Lecture03 {
         final Stream<Stream<Character>> charStreamStreams = words.map(Lecture03::characterStream);
 
         // Stream<Char>들을 펼친 스트림으로 변환.
+        words = Stream.of(contents.split("[\\P{L}]+")).skip(1);
         final Stream<Character> letters = words.flatMap(Lecture03::characterStream);
+//        letters.forEach(System.out::println);
     }
 
     public static Stream<Character> characterStream(String s) {
