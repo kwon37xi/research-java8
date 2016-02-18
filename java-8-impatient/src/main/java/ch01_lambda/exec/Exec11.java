@@ -1,6 +1,6 @@
-package ch01_lambda.practice;
+package ch01_lambda.exec;
 
-public class Practice11 {
+public class Exec11 {
     interface I {
         static void f() {
             System.out.println("Hello I");

@@ -1,9 +1,9 @@
-package ch01_lambda.practice;
+package ch01_lambda.exec;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Practice08 {
+public class Exec08 {
     public static void main(String[] args) {
         String[] names = {"Peter", "Paul", "Mary"};
         List<Runnable> runners = new ArrayList<>();

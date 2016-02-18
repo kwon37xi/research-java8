@@ -1,11 +1,11 @@
-package ch01_lambda.practice;
+package ch01_lambda.exec;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 
-public class Practice09 {
+public class Exec09 {
     public interface Collection2<T> extends Collection<T> {
         default void forEachIf(Consumer<T> action, Predicate<T> filter) {
             forEach((t) -> {

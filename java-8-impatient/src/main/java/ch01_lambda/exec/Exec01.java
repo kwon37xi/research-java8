@@ -1,11 +1,11 @@
-package ch01_lambda.practice;
+package ch01_lambda.exec;
 
 import java.util.Arrays;
 
 /**
  * Arrays.sort의 비교자 코드는 sort 호출과 같은 쓰레드에서 실행된다.
  */
-public class Practice01 {
+public class Exec01 {
     public static void main(String[] args) {
         String[] strings = {"hello", "hi"};
 

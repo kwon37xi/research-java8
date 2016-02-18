@@ -1,9 +1,9 @@
-package ch01_lambda.practice;
+package ch01_lambda.exec;
 
 import java.io.File;
 import java.util.Arrays;
 
-public class Practice04 {
+public class Exec04 {
     public static void main(String[] args) {
         File dir = new File("/home/kwon37xi/Downloads");
         final File[] files = dir.listFiles();

@@ -1,9 +1,9 @@
-package ch01_lambda.practice;
+package ch01_lambda.exec;
 
 /**
  * Callable 사용시에는 Void라 하더라도 lambda 표현식 내에서 return이 필요하다.
  */
-public class Practice06 {
+public class Exec06 {
     public interface RunnableEx {
         void run() throws Exception;
     }

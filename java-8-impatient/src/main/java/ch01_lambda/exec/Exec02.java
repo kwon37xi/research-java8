@@ -1,10 +1,10 @@
-package ch01_lambda.practice;
+package ch01_lambda.exec;
 
 import java.io.File;
 import java.io.FileFilter;
 import java.util.Arrays;
 
-public class Practice02 {
+public class Exec02 {
     public static void main(String[] args) {
         String dirPath = "/home/kwon37xi";
 

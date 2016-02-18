@@ -1,6 +1,6 @@
-package ch01_lambda.practice;
+package ch01_lambda.exec;
 
-public class Practice07 {
+public class Exec07 {
     public static Runnable andThen(Runnable runnable1, Runnable runnable2) {
         return () -> {
             runnable1.run();
