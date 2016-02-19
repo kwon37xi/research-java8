@@ -1,5 +1,6 @@
 package ch02_stream.exec;
 
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 /**
@@ -7,6 +8,10 @@ import java.util.stream.Stream;
  * Stream은 lazy loading 되기 때문에 유한성 여부를 체크하려면 모든 값을 읽어봐야하므로 무한 Stream일 경우 계속 읽기만 할 뿐 아무값도 리턴되지 않는다.
  */
 public class Exec07 {
+    public static void main(String[] args) {
+        System.out.println(isFinite(IntStream.range(0,100).boxed()));
+        System.out.println(isFinite(Stream.generate(Math::random))); // 영원히 끝나지 않음.
+    }
 
     public static <T> boolean isFinite(Stream<T> stream) {
         final long count = stream.count();
