@@ -1,6 +1,5 @@
 package ch02_stream.exec;
 
-import java.util.function.BinaryOperator;
 import java.util.stream.Stream;
 
 /*
