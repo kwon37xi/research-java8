@@ -28,6 +28,7 @@ public class Exec17 {
 
         System.out.println("Start thread!");
     }
+
     public static void doInParallelAsync(Runnable first, Runnable second, Consumer<Throwable> handler) {
         final Thread thread1 = new Thread(first);
         thread1.setUncaughtExceptionHandler((thread, ex) -> handler.accept(ex));
