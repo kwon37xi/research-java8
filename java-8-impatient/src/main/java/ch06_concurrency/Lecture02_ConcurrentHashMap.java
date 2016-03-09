@@ -1,8 +1,11 @@
 package ch06_concurrency;
 
 import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.LongAdder;
+import java.util.function.BiFunction;
 
 public class Lecture02_ConcurrentHashMap {
     public static void main(String[] args) {
@@ -50,5 +53,45 @@ public class Lecture02_ConcurrentHashMap {
         // compute나, merge에 전달한 lambda가 null을 리턴하면 기존 엔트리가 맵에서 제거된다.
 
 
+        // bulk search
+        ConcurrentHashMap<String, Integer> words = new ConcurrentHashMap<>();
+        words.put("hello", 1003);
+        words.put("world", 51);
+        words.put("java", 2003);
+        words.put("groovy", 568);
+        words.put("kotlin", 761);
+        words.put("scala", 875);
+
+        String result = words.search(1000, (k, v) -> v > 1000 ? k : null);
+        System.out.println("map search result : " + result);
+
+        // forEach
+        words.forEach(1000, (k, v) -> System.out.println(k + " -> " + v));
+        words.forEach(1000, (k, v) -> "with transformer " + k + " -> " + v,
+            System.out::println);
+        words.forEach(1000,
+            (k, v) -> v > 1000 ? "with filter transformer " + k + " -> " + v : null,
+            System.out::println);
+
+        Integer sumOfWordCount = words.reduceValues(1000, Integer::sum);
+        System.out.println("Sum of word counts : " + sumOfWordCount);
+
+        Integer maxWordLength = map.reduceKeys(1000, String::length, Integer::max);
+        System.out.println("Max word length : " + maxWordLength);
+
+        Integer longWordCount = words.reduceValues(1000, v -> v > 1000 ? 1 : null, Integer::sum);
+        System.out.println("Long word longWordCount : " + longWordCount);
+
+        long longSum = words.reduceValuesToLong(1000,
+            Integer::longValue,
+            0,
+            Long::sum);
+        System.out.println("long sum of words countss : " + longSum);
+
+        // concurrent set
+//        Set<String> wordSet = ConcurrentHashMap.<String>newKeySet();
+        Set<String> wordSet = words.keySet(1); // with default value 1
+        wordSet.add("clojure");
+        System.out.println("clojure : " + words.get("clojure"));
     }
 }
