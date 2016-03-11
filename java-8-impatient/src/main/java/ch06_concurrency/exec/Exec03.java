@@ -11,6 +11,8 @@ import java.util.concurrent.atomic.LongAdder;
 
 /**
  * 현재 내 PC에서 longAdder가 압도적으로 이김.
+ * AtomicLong : 약 2600ms
+ * LongAdder : 약 1500ms
  */
 public class Exec03 {
     public static void main(String[] args) {
@@ -42,12 +44,9 @@ public class Exec03 {
         Instant end = Instant.now();
         final Duration between = Duration.between(start, end);
         System.out.println(type + " time elapsed : " + between.toMillis() + " millis with " + (type.equals("atomiclong") ? atomicLong.get() : longAdder.sum()));
-
-
     }
 
     private static void executeAtomicLong(Executor executor, AtomicLong atomicLong) {
-
         for (int i = 0; i < 1000; i++) {
             executor.execute(() -> {
                     for (int j = 0; j < 100000; j++) {
@@ -60,8 +59,6 @@ public class Exec03 {
     }
 
     private static void executeLongAdder(Executor executor, LongAdder longAdder) {
-        ExecutorService executorService = Executors.newFixedThreadPool(1000);
-
         for (int i = 0; i < 1000; i++) {
             executor.execute(() -> {
                     for (int j = 0; j < 100000; j++) {
