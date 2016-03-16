@@ -1,7 +1,10 @@
 package ch06_concurrency.exec;
 
+import java.net.PasswordAuthentication;
+import java.util.Arrays;
 import java.util.concurrent.CompletableFuture;
-import java.util.function.BiFunction;
+import java.util.concurrent.ForkJoinPool;
+import java.util.concurrent.TimeUnit;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
 
@@ -13,22 +16,38 @@ import java.util.function.Supplier;
  */
 public class Exec11 {
     public static void main(String[] args) {
-        repeate(() -> (int) Math.random() * 10, integer -> integer.equals(5));
+        repeate(() -> {
+            // IntelliJ console에서는 실행안됨. 별도의 터미널에서 실행할것.
+            System.console().printf("Username : ");
+            final String username = System.console().readLine();
+            System.console().printf("Password : ");
+            final char[] password = System.console().readPassword();
+
+            try {
+                TimeUnit.SECONDS.sleep(1);
+            } catch (InterruptedException e) {
+                throw new IllegalStateException(e);
+            }
+            return new PasswordAuthentication(username, password);
+
+        }, pa -> Arrays.equals(pa.getPassword(), "secret".toCharArray()))
+        .thenAccept(pa -> System.out.println("Username " + pa.getUserName() + " passed."));
+
+        ForkJoinPool.commonPool().awaitQuiescence(10, TimeUnit.MINUTES);
     }
 
-    public static <T>CompletableFuture<T> repeate(Supplier<T> action, Predicate<T> until) {
+    // http://www.nurkiewicz.com/2013/05/java-8-definitive-guide-to.html
+    // Speaking of get(), there is also CompletableFuture.join() method with some subtle changes in error handling.
+    // But in general they are the same.
+    public static <T> CompletableFuture<T> repeate(Supplier<T> action, Predicate<T> until) {
         return CompletableFuture.supplyAsync(action)
-            .handle((BiFunction<T, Throwable, T>) (value, throwable) -> {
-                System.out.println("Error! " + throwable.getMessage());
-                return null;
-            })
             .thenApplyAsync(value -> {
+                System.out.println("current value : " + value);
                 if (until.test(value)) {
-                    System.out.println("Congratulations!");
-                    return;
+                    return value;
+                } else {
+                    return repeate(action, until).join();
                 }
-
-                repeate(action, until);
             });
     }
 }
