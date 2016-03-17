@@ -1,7 +1,6 @@
 package ch08_othertopics;
 
 import java.math.BigInteger;
-import java.util.concurrent.ExecutionException;
 import java.util.stream.Stream;
 
 public class Lecture02_Numbers {
