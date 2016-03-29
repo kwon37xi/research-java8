@@ -18,9 +18,7 @@ public class Exec01 {
         try {
             in = new Scanner(Paths.get("java-8-impatient/anne.txt"));
             out = new PrintWriter("/tmp/out.txt");
-            if (true) {
-                throw new IllegalStateException("some error occurs.");
-            }
+
             while (in.hasNext()) {
                 out.println(in.next().toLowerCase());
             }
