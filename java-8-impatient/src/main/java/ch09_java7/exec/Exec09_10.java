@@ -2,7 +2,7 @@ package ch09_java7.exec;
 
 import java.util.Objects;
 
-public class Exec09 {
+public class Exec09_10 {
     public static class LabeledPoint {
         private String label;
         private int x;
@@ -35,6 +35,29 @@ public class Exec09 {
         @Override
         public int hashCode() {
             return Objects.hash(label, x, y);
+        }
+
+        public int compareTo(LabeledPoint other) {
+            final int xCompared = Integer.compare(x, other.x);
+            if (xCompared != 0) {
+                return xCompared;
+            }
+
+            final int yCompared = Integer.compare(y, other.y);
+            if (yCompared != 0) {
+                return yCompared;
+            }
+
+            return Objects.compare(label, other.label, (l, r) -> {
+                // null 체크가 필수이다.
+                if (l == null) {
+                    return -1;
+                }
+                if (r == null) {
+                    return 1;
+                }
+                return l.compareTo(r);
+            });
         }
     }
 }
