@@ -1,0 +1,15 @@
+#pane {
+    -fx-padding: 0.5em;
+    -fx-hgap: 0.5em;
+    -fx-vgap: 0.5em;
+    -fx-background-image: url("metal.jpg");
+}
+
+.buttonrow {
+    -fx-spacing: 0.5em;
+    -fx-alignment: center;
+}
+
+.label {
+    -fx-font-family: "Comic Sans MS";
+}
