@@ -20,3 +20,6 @@ strArrList.add("Nashorn!");
 
 intArrList.add(5);
 intArrList.add(6);
+
+print(intArrList);
+print(strArrList);
