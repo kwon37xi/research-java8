@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.StackPane?>
+<StackPane xmlns:fx="http://javafx.com/fxml">
+    <children>
+        <ImageView fitWidth="500" fitHeight="300"> <!-- 가로/세로비 무시하고 고정크기 -->
+            <image>
+                <Image url="@images/snow.jpg"/>
+            </image>
+        </ImageView>
+        <ImageView preserveRatio="true"> <!-- 가로/세로비 유지 -->
+            <image>
+                <Image url="@images/duke.gif"/> <!-- 투명 이미지 -->
+            </image>
+        </ImageView>
+    </children>
+
+</StackPane>
