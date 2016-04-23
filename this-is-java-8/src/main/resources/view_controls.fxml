@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="ch17_javafx.sec07.ViewControlsController"
+            prefHeight="180" prefWidth="500">
+    <children>
+        <Label layoutX="11.0" layoutY="9.0" text="ListView"/>
+        <ListView fx:id="listView" layoutX="10.0" layoutY="30.0" prefHeight="100.0" prefWidth="100.0"/>
+
+        <Label layoutX="125.0" layoutY="9.0" text="TableView"/>
+        <TableView fx:id="tableView" layoutX="120.0" layoutY="30.0" prefHeight="100.0" prefWidth="290.0">
+            <columns>
+                <TableColumn prefWidth="100.0" text="스마트폰"/>
+                <TableColumn prefWidth="100.0" text="이미지"/>
+            </columns>
+        </TableView>
+
+        <Label layoutX="425.0" layoutY="9.0" text="ImageView"/>
+        <ImageView fx:id="imageView" fitHeight="100.0" fitWidth="60.0" layoutX="430.0" layoutY="30.0"
+                   preserveRatio="true"/>
+        <Button layoutX="190.0" layoutY="145.0" onAction="#handleBtnOkAction" text="확인"/>
+        <Button layoutX="260.0" layoutY="145.0" onAction="#handleBtnCancelAction" text="취소"/>
+    </children>
+</AnchorPane>
