@@ -6,8 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.image.ImageView;
+import javafx.scene.control.*;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
@@ -17,11 +16,22 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class MediaViewControlsController extends Application implements Initializable {
-    @FXML private MediaView mediaView;
-    @FXML private ImageView imageView;
-    @FXML private Button btnPlay;
-    @FXML private Button btnPause;
-    @FXML private Button btnStop;
+    @FXML
+    private MediaView mediaView;
+    @FXML
+    private Button btnPlay;
+    @FXML
+    private Button btnPause;
+    @FXML
+    private Button btnStop;
+    @FXML
+    private Label labelTime;
+    @FXML
+    private Slider sliderVolume;
+    @FXML
+    private ProgressBar progressBar;
+    @FXML
+    private ProgressIndicator progressIndicator;
 
     private boolean endOfMedia;
 
@@ -40,6 +50,15 @@ public class MediaViewControlsController extends Application implements Initiali
         mediaView.setMediaPlayer(mediaPlayer);
 
         mediaPlayer.setOnReady(() -> {
+            mediaPlayer.currentTimeProperty().addListener((observable, oldValue, newValue) -> {
+                final double currentTimeSeconds = mediaPlayer.getCurrentTime().toSeconds();
+                final double totalDurationSeconds = mediaPlayer.getTotalDuration().toSeconds();
+                double progress = currentTimeSeconds / totalDurationSeconds;
+                progressBar.setProgress(progress);
+                progressIndicator.setProgress(progress);
+                labelTime.setText((int) currentTimeSeconds + "/" + (int) totalDurationSeconds + " sec");
+            });
+
             btnPlay.setDisable(false);
             btnPause.setDisable(true);
             btnStop.setDisable(true);
@@ -63,6 +82,9 @@ public class MediaViewControlsController extends Application implements Initiali
         });
 
         mediaPlayer.setOnEndOfMedia(() -> {
+            progressBar.setProgress(1.0);
+            progressIndicator.setProgress(1.0);
+
             endOfMedia = true;
 
             btnPlay.setDisable(false);
@@ -87,6 +109,12 @@ public class MediaViewControlsController extends Application implements Initiali
 
         btnPause.setOnAction(event -> mediaPlayer.pause());
         btnStop.setOnAction(event -> mediaPlayer.stop());
+
+        sliderVolume.valueProperty().addListener((observable, oldValue, newValue) -> {
+            mediaPlayer.setVolume(sliderVolume.getValue() / 100.0);
+        });
+
+        sliderVolume.setValue(50.0);
     }
 
     public static void main(String[] args) {
