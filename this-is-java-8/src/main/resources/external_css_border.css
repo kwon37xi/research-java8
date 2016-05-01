@@ -1,0 +1,28 @@
+#vbox1 {
+    -fx-border-color: red;
+    -fx-border-width: 1;
+}
+
+#vbox2 {
+    -fx-border-color: red;
+    -fx-border-width: 1;
+    -fx-border-radius: 20;
+}
+
+#vbox3 {
+    -fx-border-insets: 0, 10, 20;
+    -fx-border-color: red, green, blue;
+    -fx-border-width: 1 1 1;
+}
+
+#vbox4 {
+    -fx-border-insets: 0, 10, 20;
+    -fx-border-color: red, green white green white, blue;
+    -fx-border-width: 1, 1, 1 3 3 1; /* 제일안쪽 사각형은 위-1 우/하-3 좌-ㅎ 굵기 */
+}
+
+#vbox5 {
+    -fx-border-color: red;
+    -fx-border-width: 2;
+    -fx-border-style: solid dotted dashed segments(3, 2, 8, 2) /* 상-solid 우-dotted 하-dashed 좌-"선3 공2 선8 공2"반복 */
+}
