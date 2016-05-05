@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <StackPane xmlns:fx="http://javafx.com/fxml"
-           prefHeight="500" prefWidth="350" fx:controller="ch17_javafx.sec12.StackPaneController">
+           prefHeight="500" prefWidth="350" fx:controller="ch17_javafx.sec12.AnimationController">
     <children>
         <BorderPane>
             <top>
