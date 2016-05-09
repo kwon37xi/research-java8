@@ -16,9 +16,10 @@
         </TableView>
     </center>
     <bottom>
-        <HBox alignment="CENTER">
+        <HBox alignment="CENTER" spacing="10">
             <children>
                 <Button fx:id="addButton" text="추가" />
+                <Button fx:id="barChartButton" text="학생별 막대 그래프" />
             </children>
             <padding>
                 <Insets topRightBottomLeft="10"/>

@@ -7,6 +7,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.chart.BarChart;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -25,11 +27,13 @@ import java.util.ResourceBundle;
  */
 public class RootController implements Initializable {
     @FXML private Button addButton;
+    @FXML private Button barChartButton;
     @FXML private TableView<Student> gradeTable;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         addButton.setOnAction(this::handleAddButton);
+        barChartButton.setOnAction(this::handleBarChartButton);
 
         final ObservableList<TableColumn<Student, ?>> columns = gradeTable.getColumns();
         columns.get(0).setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -62,6 +66,56 @@ public class RootController implements Initializable {
         } catch (IOException e) {
             throw new IllegalStateException(e);
         }
+
+    }
+
+    private void handleBarChartButton(ActionEvent actionEvent) {
+        System.out.println("bar chart button clicked.");
+
+        try {
+            final ObservableList<Student> students = gradeTable.getItems();
+            System.out.println("Students : " + students.size());
+
+            final Window primaryWindow = barChartButton.getScene().getWindow();
+
+            Stage barChartDialog = new Stage(StageStyle.UTILITY);
+            barChartDialog.initModality(Modality.WINDOW_MODAL);
+            barChartDialog.initOwner(primaryWindow);
+            barChartDialog.setTitle("막대 그래프");
+
+            FXMLLoader barChartDialogLoader = new FXMLLoader(getClass().getResource("/exec_barchart.fxml"));
+
+            final Parent barChartParent = barChartDialogLoader.load();
+
+            final BarChartController barChartController = barChartDialogLoader.getController();
+            barChartController.setBarChartDialog(barChartDialog);
+
+            XYChart.Series koreanSeries = new XYChart.Series();
+            koreanSeries.setName("국어");
+
+            XYChart.Series mathSeries = new XYChart.Series();
+            mathSeries.setName("수학");
+
+            XYChart.Series englishSeries = new XYChart.Series();
+            englishSeries.setName("영어");
+
+            for (Student student : students) {
+                koreanSeries.getData().add(new XYChart.Data(student.getName(), student.getKorean()));
+                mathSeries.getData().add(new XYChart.Data(student.getName(), student.getMath()));
+                englishSeries.getData().add(new XYChart.Data(student.getName(), student.getEnglish()));
+            }
+
+            BarChart barChart = (BarChart) barChartParent.lookup("#barChart");
+            barChart.getData().addAll(koreanSeries, mathSeries, englishSeries);
+
+            Scene barChartScene = new Scene(barChartParent);
+            barChartDialog.setResizable(false);
+            barChartDialog.setScene(barChartScene);
+            barChartDialog.show();
+        } catch (IOException e) {
+            throw new IllegalStateException(e);
+        }
+
 
     }
 }
