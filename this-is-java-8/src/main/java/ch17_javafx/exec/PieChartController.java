@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class BarChartController implements Initializable {
+public class PieChartController implements Initializable {
     @FXML private Button closeButton;
 
     @Override
@@ -18,7 +18,6 @@ public class BarChartController implements Initializable {
     }
 
     private void handleCloseButton(ActionEvent actionEvent) {
-//        barChartDialog.close();
         ((Stage)closeButton.getScene().getWindow()).close();
     }
 }

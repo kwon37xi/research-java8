@@ -1,21 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.chart.BarChart?>
-<?import javafx.scene.chart.CategoryAxis?>
-<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
-<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="ch17_javafx.exec.BarChartController">
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="ch17_javafx.exec.PieChartController">
     <center>
-        <BarChart id="barChart">
-            <xAxis>
-                <CategoryAxis side="BOTTOM"/>
-            </xAxis>
-            <yAxis>
-                <NumberAxis side="LEFT"/>
-            </yAxis>
-        </BarChart>
+        <PieChart id="pieChart" fx:id="pieChart" />
     </center>
     <bottom>
         <HBox alignment="CENTER" spacing="10">

@@ -50,4 +50,14 @@ public class Student {
     public void setEnglish(Integer english) {
         englishProperty.setValue(english);
     }
+
+    @Override
+    public String toString() {
+        return "Student{" +
+            "nameProperty=" + nameProperty +
+            ", koreanProperty=" + koreanProperty +
+            ", mathProperty=" + mathProperty +
+            ", englishProperty=" + englishProperty +
+            '}';
+    }
 }
