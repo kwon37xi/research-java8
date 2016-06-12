@@ -15,15 +15,12 @@ public class ExecuteExample {
         ExecutorService executorService = Executors.newFixedThreadPool(2);
 
         for (int i = 0; i < 10; i++) {
-            Runnable runnable = new Runnable() {
-                @Override
-                public void run() {
-                    ThreadPoolExecutor threadPoolExecutor = (ThreadPoolExecutor) executorService;
-                    int poolSize = threadPoolExecutor.getPoolSize();
-                    String threadName = Thread.currentThread().getName();
-                    System.out.println("[총 스레드 갯수: " + poolSize + "] 작업 스레드 이름: " + threadName);
-                    int value = Integer.parseInt("삼");
-                }
+            Runnable runnable = () -> {
+                ThreadPoolExecutor threadPoolExecutor = (ThreadPoolExecutor) executorService;
+                int poolSize = threadPoolExecutor.getPoolSize();
+                String threadName = Thread.currentThread().getName();
+                System.out.println("[총 스레드 갯수: " + poolSize + "] 작업 스레드 이름: " + threadName);
+                int value = Integer.parseInt("삼");
             };
 
 //            executorService.execute(runnable); // execute는 매번 새로운 쓰레드 이름이 나온다.
