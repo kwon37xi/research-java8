@@ -2,21 +2,21 @@ package ch02;
 
 public class Apple {
     private String color;
-    private int weight;
+    private Integer weight;
 
     public Apple() {
     }
 
-    public Apple(String color, int weight) {
+    public Apple(String color, Integer weight) {
         this.weight = weight;
         this.color = color;
     }
 
-    public int getWeight() {
+    public Integer getWeight() {
         return weight;
     }
 
-    public void setWeight(int weight) {
+    public void setWeight(Integer weight) {
         this.weight = weight;
     }
 
