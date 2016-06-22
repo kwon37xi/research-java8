@@ -4,12 +4,10 @@ package ch04;
 import java.util.Arrays;
 import java.util.List;
 
-import static ch04.Dish.Type.MEAT;
-import static ch04.Dish.Type.FISH;
-import static ch04.Dish.Type.OTHER;
+import static ch04.Dish.Type.*;
 
 public class Menu {
-    public List<Dish> menus() {
+    public static List<Dish> menus() {
         return Arrays.asList(
             new Dish("pork", false, 800, MEAT),
             new Dish("beef", false, 700, MEAT),
