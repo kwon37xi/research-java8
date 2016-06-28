@@ -5,6 +5,9 @@ import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Arrays;
+import java.util.function.IntSupplier;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class GeneratingStreamExample {
@@ -30,5 +33,35 @@ public class GeneratingStreamExample {
         Stream.iterate(0, n -> n + 2)
             .limit(100)
             .forEach(System.out::println);
+
+        // quiz 5-4
+        System.out.println("Fibonacci numbers : " + Stream.iterate(new int[]{0, 1}, f -> new int[]{f[1], f[0] + f[1]})
+            .limit(10)
+            .map(f -> String.format("(%d,%d)", f[0], f[1]))
+            .collect(Collectors.joining(",")));
+
+        Stream.generate(Math::random)
+            .limit(5)
+            .forEach(System.out::println);
+
+        IntStream ones = IntStream.generate(() -> 1);
+        ones.limit(5).forEach(System.out::println);
+
+        IntSupplier fib = new IntSupplier() {
+            private int previous = 0;
+            private int current = 1;
+            @Override
+            public int getAsInt() {
+                int oldPrevious = this.previous;
+                int nextValue = this.previous + this.current;
+                this.previous = this.current;
+                this.current = nextValue;
+                return oldPrevious;
+            }
+        };
+
+        System.out.println("Fibonacci with IntStream");
+        IntStream.generate(fib).limit(10).forEach(System.out::println);
+
     }
 }
