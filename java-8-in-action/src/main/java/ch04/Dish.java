@@ -1,5 +1,7 @@
 package ch04;
 
+import ch06.sec03.GroupingExample.CaloricLevel;
+
 public class Dish {
     private final String name;
     private final boolean vegetarian;
@@ -37,6 +39,12 @@ public class Dish {
             ", calories=" + calories +
             ", type=" + type +
             '}';
+    }
+
+    public CaloricLevel getCaloricLevel() {
+        if (this.getCalories() <= 400) return CaloricLevel.DIET;
+        else if (this.getCalories() <= 700) return CaloricLevel.NORMAL;
+        else return CaloricLevel.FAT;
     }
 
     public enum Type {
