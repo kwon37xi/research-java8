@@ -15,6 +15,10 @@ public class Shop {
         this.name = name;
     }
 
+    public String getName() {
+        return name;
+    }
+
     public Future<Double> getPriceAsync(String product) {
 //        CompletableFuture<Double> futurePrice = new CompletableFuture<>();
 //
