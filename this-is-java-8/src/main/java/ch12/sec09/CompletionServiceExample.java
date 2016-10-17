@@ -30,10 +30,11 @@ public class CompletionServiceExample {
             public void run() {
                 while (true) {
                     try {
-                        Future<Integer> future = completionService.take();
+                        Future<Integer> future = completionService.take(); // 정확한 갯수 지정안하면 무한정 기다리는 듯.
                         int value = future.get();
                         System.out.println("[처리 결과] " + value);
                     } catch (Exception ex) {
+                        ex.printStackTrace();
                         break;
                     }
                 }
