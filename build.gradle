@@ -7,6 +7,9 @@ ext {
 subprojects {
     apply plugin: 'java'
     apply plugin: 'jacoco'
+    apply plugin: 'pmd'
+    apply plugin: 'checkstyle'
+    apply plugin: 'findbugs'
 
     group 'kr.pe.kwonnam.research-java8'
     version '0.1'
@@ -42,4 +45,28 @@ subprojects {
             enabled = true
         }
     }
+
+    tasks.withType(Checkstyle) {
+        reports {
+            xml.enabled false
+            html.enabled true
+        }
+        ignoreFailures = true
+        configFile = rootProject.file('config/checkstyle/checkstyle.xml') // rule 파일
+    }
+
+    tasks.withType(FindBugs) {
+        reports {
+            xml.enabled false
+            html.enabled true
+        }
+        ignoreFailures = true
+        effort = 'default'
+        reportLevel = 'medium'
+    }
+
+    pmd {
+        ignoreFailures = true // 위반이 있어도 report만하고 넘어감
+    }
+
 }
