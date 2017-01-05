@@ -9,6 +9,8 @@ import java.beans.Introspector;
 import java.beans.PropertyDescriptor;
 
 /*
+https://projectlombok.org/features/GetterSetter.html
+
 class 혹은 field 에 지정하여 getter/setter 메소드를 생성한다.
 
 AccessLevel.PUBLIC|PROTECTED|PACKAGE|PRIVATE 으로 메소드 액세스 레벨 지정가능
