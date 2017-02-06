@@ -18,6 +18,12 @@ import lombok.Setter;
  * Scala case 클래스와 롬복 @EqualsAndHashCode를 사용한 클래스를 믹스해서 상속했다면 작동에 문제가 없을 것이다.
  * 만약 직접 equals/hashCode를 수정하려고 한다면 canEqual을 오버라이드 해야한다.
  * onParam=@__({@AnnotationsHere}) 사용가능.
+ *
+ * configurations
+ *
+ * lombok.equalsAndHashCode.doNotUseGetters = [true | false] (default: false)
+ * lombok.equalsAndHashCode.callSuper = [call | skip | warn] (default: warn)
+ * lombok.equalsAndHashCode.flagUsage = [warning | error] (default: not set)
  */
 @EqualsAndHashCode(exclude = {"id", "shape"})
 public class EqualsAndHashCodeExample {
