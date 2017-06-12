@@ -1,8 +1,9 @@
 ext {
-    curatorVersion = '3.3.0'
+    curatorVersion = '2.12.0'
 }
 
+// curator + zookeeper + zookeeper 서버 버전이 안 맞으면 작동안함. 버전 잘 맞출 것.
 dependencies {
     compile group: 'org.apache.curator', name: 'curator-framework', version: curatorVersion
     compile group: 'org.apache.curator', name: 'curator-recipes', version: curatorVersion
-}
+    compile group: 'org.apache.curator', name: 'curator-examples', version: curatorVersion }
