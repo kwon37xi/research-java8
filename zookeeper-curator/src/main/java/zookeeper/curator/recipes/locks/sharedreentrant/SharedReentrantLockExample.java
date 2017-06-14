@@ -13,6 +13,8 @@ import java.util.concurrent.TimeUnit;
 import static org.slf4j.LoggerFactory.getLogger;
 
 /**
+ * <a href="http://curator.apache.org/curator-recipes/shared-reentrant-lock.html">Shared Reentrant Lock - 재진입이 가능한 공유 Lock</a>
+ *
  * <code>gradlew runExample -PrunMain=zookeeper.curator.recipes.locks.sharedreentrant.SharedReentrantLockExample -DappName=[appName]</code>
  */
 public class SharedReentrantLockExample {
@@ -34,7 +36,14 @@ public class SharedReentrantLockExample {
                 try {
                     log.info("Lock work - {} wait for 8 seconds", appName);
                     TimeUnit.SECONDS.sleep(8);
-                    log.info("Lock end - {}", appName);
+
+                    log.info("Lock inner again - {} wait for 5 seconds", appName);
+                    mutex.acquire();
+                    TimeUnit.SECONDS.sleep(5);
+                    mutex.release();
+                    log.info("Lock inner released - {}", appName);
+
+                    log.info("Lock outer end - {}", appName);
                 } finally {
                     mutex.release();
                 }
