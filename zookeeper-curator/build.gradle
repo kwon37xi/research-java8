@@ -6,4 +6,13 @@ ext {
 dependencies {
     compile group: 'org.apache.curator', name: 'curator-framework', version: curatorVersion
     compile group: 'org.apache.curator', name: 'curator-recipes', version: curatorVersion
-    compile group: 'org.apache.curator', name: 'curator-examples', version: curatorVersion }
+    compile group: 'org.apache.curator', name: 'curator-examples', version: curatorVersion
+}
+
+task runExample(type: JavaExec) {
+    if (project.hasProperty('runMain')) {
+        main = project.getProperty('runMain')
+    }
+    classpath = sourceSets.main.runtimeClasspath
+    systemProperties System.properties
+}
