@@ -21,7 +21,7 @@ import static org.slf4j.LoggerFactory.getLogger;
  * Read Lock은 Write Lock이 없으면 여러 프로세스가 동시에 읽을 수 있다.
  * Write Lock은 Read Lock으로 다운그레이드 될 수 있지만 Read Lock을 Write Lock으로 업그레이드할 수는 없다.
  * <br>
- * <code>gradlew runExample -PrunMain=zookeeper.curator.recipes.locks.sharedreentrant.SharedReentrantReadWriteLockExample -DappName=[appName] -DlockType=read|write</code>
+ * <code>gradlew runExample -PrunMain=zookeeper.curator.recipes.locks.sharedreentrant.SharedReentrantReadWriteLockExample -DappName=[appName]</code>
  * appName 에 write 문자열이 들어있으면 write lock, 아니면 read lock 잡음
  */
 public class SharedReentrantReadWriteLockExample {
