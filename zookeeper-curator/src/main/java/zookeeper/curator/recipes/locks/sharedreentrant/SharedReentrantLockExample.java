@@ -21,8 +21,7 @@ public class SharedReentrantLockExample {
     private static final Logger log = getLogger(SharedReentrantLockExample.class);
 
     public static void main(String[] args) {
-        String appName = System.getProperty("appName", "unknown");
-        log.info("Application app Num - {}", appName);
+        String appName = ZookeeperExamples.appName();
         RetryPolicy retryPolicy = new ExponentialBackoffRetry(1000, 3);
 
         InterProcessMutex mutex = null;

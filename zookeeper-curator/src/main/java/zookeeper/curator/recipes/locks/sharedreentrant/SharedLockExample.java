@@ -21,15 +21,15 @@ public class SharedLockExample {
     private static final Logger log = getLogger(SharedLockExample.class);
 
     public static void main(String[] args) {
-        String appName = System.getProperty("appName", "unknown");
-        log.info("Application app Num - {}", appName);
+        String appName = ZookeeperExamples.appName();
+
         RetryPolicy retryPolicy = new ExponentialBackoffRetry(1000, 3);
 
         InterProcessSemaphoreMutex mutex = null;
 
         try (CuratorFramework client = CuratorFrameworkFactory.newClient(ZookeeperExamples.ZOOKEEPER_CONNECTION, retryPolicy)) {
             client.start();
-            mutex = new InterProcessSemaphoreMutex(client, "/examples/locks");
+            mutex = new InterProcessSemaphoreMutex(client, "/examples/sharedlocks");
             log.info("Waiting for lock - {}", appName);
 
             if (!mutex.acquire(20, TimeUnit.SECONDS)) {
