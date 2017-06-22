@@ -1,6 +1,7 @@
 package guava.eventbus;
 
 import com.google.common.eventbus.AsyncEventBus;
+import com.google.common.eventbus.DeadEvent;
 import com.google.common.eventbus.EventBus;
 import com.google.common.eventbus.Subscribe;
 import org.slf4j.Logger;
@@ -27,6 +28,11 @@ public class EventBusBasicExample {
             log.info("Done");
         }
 
+        @Subscribe
+        public void handleDeadEvent(DeadEvent deadEvent) {
+            log.info("Dead event : {}", deadEvent);
+        }
+
         private static void receiving(int count, String message) throws InterruptedException {
             for (int i = 0; i < count; i++) {
                 log.info("... {}", message);
@@ -46,6 +52,8 @@ public class EventBusBasicExample {
 
         asyncEventBus.post("ASYNC event"); // eventBus.post를 먼저 실행하면 블로킹됨.
         eventBus.post("SYNC event");
+
+        eventBus.post(1234); // dead event test
 
         log.info("### End ###");
 
