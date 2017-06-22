@@ -44,7 +44,7 @@ public class EventBusBasicExample {
         asyncEventBus.register(new MessageListener());
         eventBus.register(new MessageListener());
 
-        asyncEventBus.post("ASYNC event");
+        asyncEventBus.post("ASYNC event"); // eventBus.post를 먼저 실행하면 블로킹됨.
         eventBus.post("SYNC event");
 
         log.info("### End ###");
