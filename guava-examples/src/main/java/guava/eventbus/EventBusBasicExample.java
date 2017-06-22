@@ -1,6 +1,5 @@
 package guava.eventbus;
 
-import com.google.common.eventbus.AllowConcurrentEvents;
 import com.google.common.eventbus.AsyncEventBus;
 import com.google.common.eventbus.EventBus;
 import com.google.common.eventbus.Subscribe;
@@ -17,8 +16,8 @@ import java.util.concurrent.TimeUnit;
  * @see EventBus
  * @see AsyncEventBus
  */
-public class EventBusSyncExample {
-    private static final Logger log = LoggerFactory.getLogger(EventBusSyncExample.class);
+public class EventBusBasicExample {
+    private static final Logger log = LoggerFactory.getLogger(EventBusBasicExample.class);
 
     public static class MessageListener {
         @Subscribe
