@@ -20,6 +20,9 @@ import java.io.UnsupportedEncodingException;
  *
  * 예외의 종류를 여러개 지정할 수 있고 지정하지 않으면 아무거나 상관없이 던질 수 있다.
  *
+ * 생성자에 이를 사용할 경우, 형제 생성자나 super 호출은 SneakyThrows 범위에서 제외된다. 이는 Java 생성자
+ * 규칙 때문에 어쩔 수 없다. 형제 생성자나 super 호출은 try/catch 안에 올 수 없다. 무조건 첫줄에 와야한다.
+ *
  * configurations
  * lombok.sneakyThrows.flagUsage = [warning | error] (default: not set)
  */
