@@ -64,6 +64,11 @@ import java.util.Set;
  *
  * adder 메소드 이름은 필드이름이 영어 복수형이면 자동으로 영어 단수형으로 만들게 되는데 모호하거나 명시하고 싶을 때는
  * <code>@Singular('axis') List axes;</code> 처럼 명시할 수 있다.
+ *
+ * configurations
+ * lombok.builder.flagUsage = [warning | error] (default: not set)
+ * lombok.singular.useGuava = [true | false] (default: false) : java의 Collections.unmodifiableXXX 대신 guava ImmutableXXX 사용해서 구현
+ * lombok.singular.auto = [true | false] (default: true) : singular 이름을 자동으로 생성(가능한 경우만), false 이면 항상 명시해줘야함.
  */
 @ToString
 @Builder(toBuilder = true)
