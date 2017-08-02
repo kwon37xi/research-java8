@@ -6,7 +6,7 @@ import java.util.function.UnaryOperator;
 public class LambdaAndChainOfResponsibilityPatternExample {
     public static void main(String[] args) {
         corWithClasses();
-        croWithLambdas();
+        corWithLambdas();
     }
 
     private static void corWithClasses() {
@@ -18,7 +18,7 @@ public class LambdaAndChainOfResponsibilityPatternExample {
         System.out.println(result);
     }
 
-    private static void croWithLambdas() {
+    private static void corWithLambdas() {
         UnaryOperator<String> headerProcessing = (String text) -> "From Raoul, Mario and Alan: " + text;
         UnaryOperator<String> spellCheckerProcessing = (String text) -> text.replaceAll("labda", "lambda");
 
