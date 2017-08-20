@@ -3,8 +3,8 @@ package guava.eventbus;
 import com.google.common.eventbus.AllowConcurrentEvents;
 import com.google.common.eventbus.EventBus;
 import com.google.common.eventbus.Subscribe;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import kr.pe.kwonnam.slf4jlambda.LambdaLogger;
+import kr.pe.kwonnam.slf4jlambda.LambdaLoggerFactory;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -18,20 +18,20 @@ import java.util.concurrent.TimeUnit;
  * 이렇게 하면 해당 메소드는 multi thread에서 동시에 호출/실행되게 된다.
  */
 public class EventBusAllowConcurrentEventsExample {
-    private static final Logger log = LoggerFactory.getLogger(EventBusBasicExample.class);
+    private static final LambdaLogger log = LambdaLoggerFactory.getLogger(EventBusBasicExample.class);
 
     public static class MessageListener {
         @AllowConcurrentEvents // 주석처리하고 실행하면 receive 메소드가 이벤트 발생 순서에 따라 순차 실행됨.
         @Subscribe
         public void receive(String message) throws InterruptedException {
-            log.info("Receiving message... {}", message);
+            log.info(() -> "Receiving message... " + message);
             receiving(3, message);
-            log.info("Receiving message done {}", message);
+            log.info("Receiving message done {}", () -> message);
         }
 
         private static void receiving(int count, String message) throws InterruptedException {
             for (int i = 0; i < count; i++) {
-                log.info("... {}", message);
+                log.info(() -> "... " + message);
                 TimeUnit.SECONDS.sleep(1L);
             }
         }
@@ -47,9 +47,9 @@ public class EventBusAllowConcurrentEventsExample {
         for (int i = 0; i < 5; i++) {
             final int count = i;
             executor.submit(() -> {
-                log.info("Start event {}", count);
+                log.info(() -> "Start event " + count);
                 eventBus.post("event " + count);
-                log.info("End event {}", count);
+                log.info("End event {}", () -> count);
             });
         }
 
