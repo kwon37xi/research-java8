@@ -1,7 +1,10 @@
 package heapdumps;
 
 import javax.management.MBeanServer;
+import java.io.File;
 import java.lang.management.ManagementFactory;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 import com.sun.management.HotSpotDiagnosticMXBean;
 
@@ -27,10 +30,10 @@ public class HeapDumper {
      */
     public static void dumpHeap(String fileName, boolean live) {
         System.out.println("Dumping Heap " + fileName + ", live: " + live);
-
         // initialize hotspot diagnostic MBean
         initHotspotMBean();
         try {
+            new File(fileName).delete();
             hotspotMBean.dumpHeap(fileName, live);
         } catch (RuntimeException re) {
             throw re;
