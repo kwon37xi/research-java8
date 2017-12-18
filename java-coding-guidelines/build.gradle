@@ -1,4 +1,4 @@
 
 dependencies {
-
+    compile group: 'org.apache.tika', name: 'tika-core', version: '1.16'
 }
