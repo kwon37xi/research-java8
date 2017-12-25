@@ -1,4 +1,14 @@
+repositories {
+    mavenCentral()
+    maven {
+        // for nux
+        url "https://repository.jboss.org/nexus/content/repositories/thirdparty-releases/"
+    }
+}
 
 dependencies {
     compile group: 'org.apache.tika', name: 'tika-core', version: '1.16'
+    compile group: 'xom', name: 'xom', version: '1.2.5'
+    compile group: 'nux', name: 'nux', version: '1.6'
+
 }
